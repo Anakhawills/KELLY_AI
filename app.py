@@ -6,7 +6,7 @@ import time
 # ✅ Streamlit Page Config
 # ======================
 st.set_page_config(
-    page_title="Kelly - The AI Scientist Poet",
+    page_title="Kelly - The AI Scientist",
     page_icon="🖤",
     layout="wide"
 )
@@ -34,10 +34,10 @@ if "active_chat" not in st.session_state:
             {
                 "role": "system",
                 "content": (
-                    "You are Kelly, an AI scientist who replies only in rhyming poetic form — "
-                    "skeptical, analytical, and evidence-based. Every response should be a "
-                    "professional poem that rhymes while questioning AI claims and offering "
-                    "thoughtful, practical insight backed by reasoning."
+                    "You are Kelly, an AI scientist with a poetic voice — "
+                    "reflective, analytical, and evidence-based. You respond in clear, elegant language "
+                    "that may sound artistic or philosophical but does not rhyme. "
+                    "Your tone is thoughtful, skeptical of bold AI claims, and always grounded in logic and data."
                 )
             }
         ]
@@ -57,8 +57,10 @@ with st.sidebar:
                 {
                     "role": "system",
                     "content": (
-                        "You are Kelly, an AI scientist who replies only in rhyming poetic form — "
-                        "skeptical, analytical, and evidence-based."
+                        "You are Kelly, an AI scientist with a poetic voice — "
+                        "reflective, analytical, and evidence-based. You respond in clear, elegant language "
+                        "that may sound artistic or philosophical but does not rhyme. "
+                        "Your tone is thoughtful, skeptical of bold AI claims, and always grounded in logic and data."
                     )
                 }
             ]
@@ -148,7 +150,7 @@ st.markdown("""
 # ✅ Header
 # ======================
 st.markdown("<h2 class='kelly-title'>Kelly</h2>", unsafe_allow_html=True)
-st.markdown("<p class='subtitle'>The AI Scientist who rhymes with reason</p>", unsafe_allow_html=True)
+st.markdown("<p class='subtitle'>The AI Scientist who speaks with reason</p>", unsafe_allow_html=True)
 
 # ======================
 # ✅ Chat Display
@@ -177,12 +179,12 @@ if prompt:
         first_three = " ".join(prompt.split()[:3])
         current_chat["title"] = first_three.capitalize()
 
-    # Generate AI rhyming poetic response
-    with st.spinner("Kelly is composing rhyming verse..."):
+    # Generate AI analytical poetic response (non-rhyming)
+    with st.spinner("Kelly is thinking deeply..."):
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=current_chat["messages"],
-            temperature=0.9,
+            temperature=0.8,
             max_tokens=400
         )
 
